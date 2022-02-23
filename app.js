@@ -21,40 +21,12 @@ app.set('view engine','.hbs');
 app.engine('.hbs',engine({defaultLayout:false}));
 app.set('views',path.join(__dirname,'static'));
 
-const users = [
-    // {
-    //     firstName: 'Nata',
-    //     lastName: 'Natali',
-    //     email: 'Natali.gmail.com',
-    //     password: '12345',
-    //     age: '23',
-    //     city: 'Lviv'
-    // },
-    // {
-    //     firstName: 'Sasha',
-    //     lastName: 'Sanuch',
-    //     email: 'sansanuch.gmail.com',
-    //     password: '32435',
-    //     age: '25',
-    //     city: 'Kiev'
-    // },
-    // {
-    //     firstName: 'Bob',
-    //     lastName: 'Spanch',
-    //     email: 'spanchBob.gmail.com',
-    //     password: '345645',
-    //     age: '30',
-    //     city: 'Novgorod'
-    // }
-];
+const users = [];
 let error = '';
 app.get('/login',(req,res)=>{
     res.render('login')
 })
 
-app.get('/users',(req,res)=>{
-    res.render('users',{users})
-})
 
 app.get('/users/:userId',({params},res)=>{
     const user = users.find(user => user.id === +params.userId);
@@ -63,7 +35,7 @@ app.get('/users/:userId',({params},res)=>{
          res.render('/error')
         return;
     }
-    res.render('users',{users})
+    res.render('userAbout',{user})
 })
 
 app.get('/users',({query},res)=>{
@@ -87,11 +59,15 @@ app.post('/login', ({body},res)=>{
         if (userExist){
            error ='User with this email is already exist';
             res.redirect('/error')
+            return;
         }
         users.push({ ...body, id: users.length ? users[users.length - 1].id + 1 : 1 })
         res.redirect('/users')
     });
 
+app.get('/users', ({id},res)=>{
+    res.render('userAbout',{id})
+})
 
 app.use((req,res)=>{
     res.render('error', {error})

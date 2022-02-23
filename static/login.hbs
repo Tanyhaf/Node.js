@@ -6,15 +6,21 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+    .wrap{
+        display: flex;
+    }
+
+    </style>
 </head>
 <body>
-<form action="/login" method="post">
-    <div>First Name: <input type="text" name="firstName"></div>
-    <div>Last Name: <input type="text" name="lastName"></div>
-    <div>Email: <input type="text" name="email"></div>
-    <div>Password: <input type="text" name="password"></div>
-    <div>Age: <input type="text" name="age"></div>
-    <div>City: <input type="text" name="city"></div>
+<form action="/login" method="post" class="wrap" >
+   <input type="text" name="firstName" placeholder="Fist Name">
+   <input type="text" name="lastName" placeholder="Last Name">
+   <input type="email" name="email" placeholder="Password">
+   <input type="password" name="password" placeholder="Password">
+   <input type="number" name="age" placeholder="age">
+    <input type="text" name="city" placeholder="City">
     <input type="submit" value="Save"></form>
 </form>
 </body>
