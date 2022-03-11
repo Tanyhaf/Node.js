@@ -32,7 +32,9 @@
     </div>
     <div>
         <label><b>Name :</b></label>
+        <span>{{user.lastName}}</span>
         <span>{{user.userName}}</span>
+
     </div>
     <div>
         <label><b>Email :</b></label>
@@ -42,7 +44,13 @@
         <label><b>Password :</b></label>
         <span>{{user.password}}</span>
     </div>
+    <div>
+        <label><b>Age :</b></label>
+        <span>{{user.age}}</span>
+    </div>
 </div>
-
+<form class="form" action="/users/{{user.id}}" method="post">
+    <input type="submit" value="delete user">
+</form>
 </body>
 </html>

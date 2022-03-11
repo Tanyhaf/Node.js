@@ -10,13 +10,15 @@
 <body>
     <div>
         {{#each users}}
-                <div>First Name: {{this.firstName}}</div>
-                <div>Last Name: {{this.lastName}}</div>
-                <div>Email: {{this.email}}</div>
-                <div>Age: {{this.age}}</div>
-                <div>City: {{this.city}}</div>
-            <hr>
-            {{/each}}
+            <div class="user">
+                {{this.firstName}}
+                <br/>
+                {{this.lastName}}
+                <form class="form" action="/users/{{this.id}}">
+                    <input type="submit" value="info">
+                </form>
+            </div>
+        {{/each}}
     </div>
 </body>
 </html>
