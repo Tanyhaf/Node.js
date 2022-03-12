@@ -1,19 +1,19 @@
 const users = require("../db/users");
 
 module.exports = {
-    IsUserIdValid: ({params}, res, next) => {
+    IsUserIdValid: (req, res, next) => {
         try{
             const {userId} = req.params;
-            if (!Number.isInteger(userId) || Number.isNaN(+userId)){
+            if (!Number.isInteger(+userId) || Number.isNaN(+userId)){
                 throw new Error('Not valid ID');
             }
 
-            const user = users.find(user => user.id === +params.userId);
+            const user = users.find(user => user.id === +userId);
             if (!user) throw new Error('No such user');
-            next();
 
             req.user=user;
 
+            next();
         } catch ({message}){
             res.redirect(`/error?error=${message}`);
         }
